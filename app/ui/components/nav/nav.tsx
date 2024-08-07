@@ -53,76 +53,92 @@ export default function Nav({
                     }
                 )}
             >
-                {/* LEFT SIDE */}
-
-                {/* desktop */}
-                <MagnifyingGlassIcon 
-                    className='h-6 hidden md:block cursor-pointer'
-                    onClick={() => dispatch(toggleSearchBar())} 
-                />
-                {/* mobile */}
-                <Bars3CenterLeftIcon className='h-6 md:hidden cursor-pointer' onClick={() => dispatch(toggleMobileNav())} />
-
                 <div 
-                    className='w-1/2 mx-auto flex justify-center md:justify-between'
-                >    
-                    <ul 
-                        className={clsx(
-                            // Layout & Sizing
-                            'hidden w-full',
-                            // Flex
-                            'justify-evenly items-center',
-                            'md:max-lg:flex-col md:flex'
-                        )}
-                    >
-                        <motion.li whileHover='hover' variants={navItem}>
-                            <Link href='/collections/latest'>LATEST</Link>
-                        </motion.li>
-                        <motion.li whileHover='hover' variants={navItem}>
-                            <Link href='/collections/tees'>TEES</Link>
-                        </motion.li>
-                    </ul>
-                    <Logo text_size='text-4xl' />
-                    <ul className={clsx(
-                            // Layout & Sizing
-                            'hidden w-full',
-                            // Flex
-                            'justify-evenly items-center',
-                            'md:max-lg:flex-col md:flex'
-                        )}
-                    >
-                        <motion.li whileHover='hover' variants={navItem}>
-                            <Link href='/collections/pants'>PANTS</Link>
-                        </motion.li>
-                        <motion.li whileHover='hover' variants={navItem}>
-                            <Link href='/collections/shorts'>SHORTS</Link>
-                        </motion.li>
-                    </ul>
+                    className={clsx(
+                        // Sizing
+                        'w-full',
+                        // Grid
+                        'grid grid-cols-12',
+                    )}
+                >
+
+                    {/* LEFT SIDE */}
+                    {/* desktop */}
+                    <div className="col-span-1 sm:col-span-2 md:col-span-1 flex items-center">
+                        <MagnifyingGlassIcon 
+                            className='h-6 hidden md:block cursor-pointer'
+                            onClick={() => dispatch(toggleSearchBar())} 
+                        />
+                        {/* mobile */}
+                        <Bars3CenterLeftIcon className='h-6 md:hidden cursor-pointer' onClick={() => dispatch(toggleMobileNav())} />
+                    </div>
+
+                    {/* CENTER */}
+                    <div 
+                        className='w-2/3 col-span-9 sm:col-span-8 md:col-span-10 mx-auto flex justify-center md:justify-between items-center'
+                    >    
+                        <ul 
+                            className={clsx(
+                                // Layout & Sizing
+                                'hidden w-full',
+                                // Flex
+                                'justify-evenly items-center',
+                                'md:max-lg:flex-col md:flex'
+                            )}
+                        >
+                            <motion.li whileHover='hover' variants={navItem}>
+                                <Link href='/collections/latest'>LATEST</Link>
+                            </motion.li>
+                            <motion.li whileHover='hover' variants={navItem}>
+                                <Link href='/collections/tees'>TEES</Link>
+                            </motion.li>
+                        </ul>
+                        <Logo text_size='text-3xl md:text-4xl' />
+                        <ul className={clsx(
+                                // Layout & Sizing
+                                'hidden w-full',
+                                // Flex
+                                'justify-evenly items-center',
+                                'md:max-lg:flex-col md:flex'
+                            )}
+                        >
+                            <motion.li whileHover='hover' variants={navItem}>
+                                <Link href='/collections/pants'>PANTS</Link>
+                            </motion.li>
+                            <motion.li whileHover='hover' variants={navItem}>
+                                <Link href='/collections/shorts'>SHORTS</Link>
+                            </motion.li>
+                        </ul>
+                    </div>
+
+                    {/* RIGHT SIDE */}
+                    <div className="col-span-2 md:col-span-1 flex items-center justify-end">
+                        <ul className='flex'>
+                            {/* mobile */}
+                            <li>
+                                <MagnifyingGlassIcon 
+                                    className='h-6 cursor-pointer block md:hidden' 
+                                    onClick={() => dispatch(toggleSearchBar())}
+                                    />
+                            </li>
+                            {/* desktop */}
+                            <li>
+                                <Link href={'/login'}>
+                                    <UserIcon className='h-6 px-2 hidden md:block cursor-pointer' />
+                                </Link>
+                            </li>
+                            {/* both */}
+                            <li>
+                                <Link href={''}>
+                                    <ShoppingBagIcon 
+                                        className='h-6 px-2 cursor-pointer' 
+                                        onClick={onShowCart}    
+                                        />
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
-                {/* RIGHT SIDE */}
-
-                {/* mobile */}
-                <MagnifyingGlassIcon 
-                    className='h-6 cursor-pointer block md:hidden' 
-                    onClick={() => dispatch(toggleSearchBar())}
-                />
-                {/* desktop */}
-                <ul className='flex'>
-                    <li>
-                        <Link href={'/login'}>
-                            <UserIcon className='h-6 px-2 hidden md:block cursor-pointer' />
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href={''}>
-                            <ShoppingBagIcon 
-                                className='h-6 px-2 cursor-pointer' 
-                                onClick={onShowCart}    
-                            />
-                        </Link>
-                    </li>
-                </ul>
 
                 {/* mobile NAV */}
                 <MobileNav />
